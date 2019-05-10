@@ -14,13 +14,12 @@ def home_view(request):
 
 class UserChangeView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = User
-    fields = ['first_name', 'last_name', 'email']
+    fields = ['email']
     template_name = 'registration/user_change.html'
     success_url = reverse_lazy('home')
     raise_exception = True  # from UserPassesTestMixin, raises 403 forbidden if test failed
 
     def form_valid(self, form):
-        form.instance.caseworker.name = form.instance.first_name + ' ' + form.instance.last_name
         form.instance.caseworker.save()
         return super().form_valid(form)
 

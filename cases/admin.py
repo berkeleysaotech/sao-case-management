@@ -49,6 +49,12 @@ class PersonAdmin(admin.ModelAdmin):
     search_fields = ['name']
     inlines = [CasesInline]
 
+    def get_readonly_fields(self, request, obj=None):
+        if not request.user.is_superuser:
+            return ['name', 'division', 'account']
+        else:
+            return []
+
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
         if request.user in Group.objects.get(name='Office Leads').user_set.all():
