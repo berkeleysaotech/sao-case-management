@@ -83,6 +83,7 @@ class Case(models.Model):
     client_email = models.EmailField(blank=True)
     client_phone = PhoneNumberField(blank=True)
     client_SID = models.CharField(max_length=10, blank=True)
+    client_pronouns = models.CharField(max_length=30, blank=True)
     incident_description = HTMLField()
     open_date = models.DateField('date case was opened', default=get_current_date)
     close_date = models.DateField(

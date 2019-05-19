@@ -107,3 +107,6 @@ venv.bak/
 # Heroku files for running locally
 logfile
 .local-config/
+
+#Mac
+.DS_Store
