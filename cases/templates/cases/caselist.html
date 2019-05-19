@@ -1,3 +1,4 @@
+
 {% extends "base.html" %} 
 {% load bootstrap4 %} {% load static %}
 {% block title %}Current cases{% endblock %} 
@@ -25,6 +26,8 @@
 			    <li title="Phone number"><i class="fa-li fa fa-phone"></i>{{case.display_client_phone}}</li> {% endif %} {% if case.client_email %}
 			    <li title="Email"><i class="fa-li fa fa-envelope"></i><a href="mailto:{{case.client_email}}">{{case.client_email}}</a></li> {% endif %} {% if case.client_SID %}
 			    <li title="Student ID"><i class="fa-li fa fa-id-card"></i>{{case.client_SID}}</li>{% endif %}
+			    {% if case.client_pronouns %}
+			    <li title="Student ID">{{case.client_pronouns}}</li>{% endif %}
 			  </ul>
 			</div>
 
