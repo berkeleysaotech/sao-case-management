@@ -70,6 +70,7 @@ class Case(models.Model):
     :instance_attribute client_email: The client's email address
     :instance_attribute client_phone: The client's phone number
     :instance_attribute client_SID: The client's UC Berkeley Student Identification number
+    :instance_attribute client_pronouns: The client's pronouns
     :instance_attribute incident_description: A summary of the client's situation/grievance, recorded by the intake caseworker
     :instance_attribute open_date: The date this case was opened, usually the day the intake was submitted
     :instance_attribute close_date: The date the case was closed. Note that if a case is reopened this information is lost
