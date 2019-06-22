@@ -153,9 +153,17 @@ header {
     box-shadow: none;
 }
 
+#caseworkers {
+    position: relative;
+    top: 150px;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+}
+
 #case-detail-contents {
     position: relative;
-    top: 100px;
+    top: 0px;
     height: 100%;
     width: 100%;
     display: flex;

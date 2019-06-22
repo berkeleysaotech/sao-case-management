@@ -28,6 +28,17 @@
 href="{% url 'cases:case_change' case.pk %}"><i class="fa fa-edit"></i></a>
 <button id="show-client-information-toggle" title="Show/hide client information"{% if not case.is_open %} style="height:120px" {% endif %}><i class="fa fa-angle-left"></i></button>
 </div>
+<div id= "caseworkers">
+	Assigned Caseworkers: 
+	{% for caseworker in case.caseworkers.all %}
+		{% if caseworker.name == case.caseworkers.all.first.name %}
+			{{ caseworker.name }}
+		{% else %}
+			, {{ caseworker.name }}
+		{% endif %}
+		
+	{% endfor %}
+<div>
 
 <div id="case-detail-contents">
 	<div id="updates">
@@ -57,3 +68,4 @@ href="{% url 'cases:case_change' case.pk %}"><i class="fa fa-edit"></i></a>
 	{% endif %} 
 </div>
 {% endblock %}
+
