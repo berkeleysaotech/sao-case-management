@@ -117,10 +117,14 @@ class Case(models.Model):
         on the admin site.
         """
         if self.caseworkers.count() > 1:
-            update_descriptions = (((update.creation_date.strftime("%B %d, %Y at %I:%M %p"), '[' + update.creator.name + ']'if update.creator is not None else '', mark_safe(update.update_description)) for update in self.caseupdate_set.all()))
+            update_descriptions = (((update.creation_date.strftime("%B %d, %Y at %I:%M %p"), '[' + update.creator.name + ']'if update.creator is not None else '', \
+                mark_safe(update.update_description.replace("<ul>", "<ul style='margin:10px; padding:0px;'>").replace("<li>", "<li style='margin-left:40px; padding:0px;'>"))) \
+                for update in self.caseupdate_set.all()))
         else:
-            update_descriptions = (((update.creation_date.strftime("%B %d, %Y at %I:%M %p"), '', mark_safe(update.update_description)) for update in self.caseupdate_set.all()))
-        return format_html_join('', "<p> <b> {} {}</b></p> {} ", update_descriptions)
+            update_descriptions = (((update.creation_date.strftime("%B %d, %Y at %I:%M %p"), '', \
+                mark_safe(update.update_description.replace("<ul>", "<ul style='margin:10px; padding:0px;'>").replace("<li>", "<li style='margin-left:40px; padding:0px;'>"))) \
+                for update in self.caseupdate_set.all()))
+        return format_html_join('', "<p> <b> {} {}</b></p>{}", update_descriptions)
 
     def display_client_phone(self):
         """
