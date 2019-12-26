@@ -79,6 +79,10 @@ class Case(models.Model):
     :instance_attribute divisions: Which of the four divisions this case falls under
     :instance_attribute is_open: Whether or not this case is still open (i.e. being actively worked on)
     :instance_attribute last_updated: The last time a case update was made for this case
+    :instance_attribute week_food: Whether this client has enough food for the week
+    :instance_attribute semester_food: Whether this client has enough food for the duration of the semester
+    :instance_attribute week_housing: Does this client have stable housing for this week
+    :instance_attribute screening_asked: Asked basic needs screening questions
     """
     client_name = models.CharField(max_length=30)
     client_email = models.EmailField(blank=True)
@@ -93,6 +97,10 @@ class Case(models.Model):
     caseworkers = models.ManyToManyField(Person, blank=True)
     divisions = MultiSelectField(choices=DIVISION_CHOICES)
     is_open = models.BooleanField('case open?', default=True)
+    week_food = models.BooleanField('Do you have enough food for the week?', default=False)
+    semester_food = models.BooleanField('Do you have enough food for the duration of the semester?', default=False)
+    week_housing = models.BooleanField('Do you have a safe and stable home for tonight and the rest of this week?', default=False)
+    screening_asked = models.BooleanField('I asked the client the basic needs screening questions above', default=False)
     last_updated = models.DateTimeField(
         'time since last update', auto_now_add=True)
     referrer = models.ForeignKey('Tag', verbose_name="How did the client hear about the office?", null=True, blank=True, on_delete=models.SET_NULL, related_name='referred_cases')
