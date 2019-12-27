@@ -38,7 +38,7 @@ class CaseChangeForm(ModelForm):
     class Meta:
         model = Case
         fields = ['client_name', 'client_phone', 'client_email', 'client_SID', 'client_pronouns', 'week_food',
-        'semester_food', 'week_housing', 'screening_asked', 'referrer', 'tags']
+        'semester_food', 'week_housing', 'dependent', 'screening_asked', 'referrer', 'tags']
         widgets = {
                'referrer': AutocompleteSelect(rel=Tag.cases.rel, admin_site=admin_site),
                'tags': AutocompleteSelectMultiple(rel=Case.tags.rel, admin_site=admin_site),
@@ -70,7 +70,7 @@ class IntakeForm(ModelForm):
     class Meta:
         model = Case
         fields = ['divisions', 'client_name',
-                  'client_email', 'client_phone', 'client_SID','client_pronouns', 'week_food', 'semester_food', 'week_housing',
+                  'client_email', 'client_phone', 'client_SID','client_pronouns', 'week_food', 'semester_food', 'week_housing', 'dependent',
                    'screening_asked','open_date','incident_description', 'intake_caseworker', 'referrer']
         widgets = {'client_phone': PhoneNumberInternationalFallbackWidget(),
                    'incident_description': TinyMCE(mce_attrs=TINY_MCE_SETUP),

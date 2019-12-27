@@ -82,6 +82,7 @@ class Case(models.Model):
     :instance_attribute week_food: Whether this client has enough food for the week
     :instance_attribute semester_food: Whether this client has enough food for the duration of the semester
     :instance_attribute week_housing: Does this client have stable housing for this week
+    :instance_attribute dependent: Is this client financially supporting another person
     :instance_attribute screening_asked: Asked basic needs screening questions
     """
     client_name = models.CharField(max_length=30)
@@ -97,9 +98,10 @@ class Case(models.Model):
     caseworkers = models.ManyToManyField(Person, blank=True)
     divisions = MultiSelectField(choices=DIVISION_CHOICES)
     is_open = models.BooleanField('case open?', default=True)
-    week_food = models.BooleanField('Do you have enough food for the week?', default=False)
-    semester_food = models.BooleanField('Do you have enough food for the duration of the semester?', default=False)
-    week_housing = models.BooleanField('Do you have a safe and stable home for tonight and the rest of this week?', default=False)
+    week_food = models.BooleanField('Needs Short-Term Food Assistance: "Do you have enough food for the week?" (If the answer is NO, check the box)', default=False)
+    semester_food = models.BooleanField('Needs Long-Term Food Assistance: "Do you have enough food for the duration of the semester?" (If the answer is NO, check the box)', default=False)
+    week_housing = models.BooleanField('Needs Housing Assistance: "Do you have a safe and stable home for tonight and the rest of this week?" (If the answer is NO, check the box)', default=False)
+    dependent = models.BooleanField('Needs Dependent Assistance: "Are you financially supporting another person?" (Child, parent, significant other, etc.) (If the answer is YES, check the box)', default = False)
     screening_asked = models.BooleanField('I asked the client the basic needs screening questions above', default=False)
     last_updated = models.DateTimeField(
         'time since last update', auto_now_add=True)
