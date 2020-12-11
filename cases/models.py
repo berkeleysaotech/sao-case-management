@@ -98,7 +98,7 @@ class Case(models.Model):
     caseworkers = models.ManyToManyField(Person, blank=True)
     divisions = MultiSelectField(choices=DIVISION_CHOICES)
     is_open = models.BooleanField('case open?', default=True)
-	week_food = models.BooleanField('Needs Short-Term Food Assistance: "Do you have enough food for the week?" (If the answer is NO, check the box)', default=False)
+    week_food = models.BooleanField('Needs Short-Term Food Assistance: "Do you have enough food for the week?" (If the answer is NO, check the box)', default=False)
     semester_food = models.BooleanField('Needs Long-Term Food Assistance: "Do you have enough food for the duration of the semester?" (If the answer is NO, check the box)', default=False)
     week_housing = models.BooleanField('Needs Housing Assistance: "Do you have a safe and stable home for tonight and the rest of this week?" (If the answer is NO, check the box)', default=False)
     dependent = models.BooleanField('Needs Dependent Assistance: "Are you financially supporting another person?" (Child, parent, significant other, etc.) (If the answer is YES, check the box)', default = False)
