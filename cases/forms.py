@@ -107,4 +107,4 @@ class IntakeForm(ModelForm):
         print(sg)
         data = self.build_notification_email(object_id)
         print(data)
-        sg.client.mail.send.post(request_body=data)
+        #sg.client.mail.send.post(request_body=data)
