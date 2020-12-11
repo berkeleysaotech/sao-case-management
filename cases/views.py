@@ -122,7 +122,7 @@ class IntakeView(LoginRequiredMixin, generic.FormView):
 
     def form_valid(self, form):
         case = form.save()
-        if not settings.LOCAL:
-            form.send_notification_email(case.id)
+        #if not settings.LOCAL:
+        #form.send_notification_email(case.id)
         return super().form_valid(form)
 
