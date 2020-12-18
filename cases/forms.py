@@ -104,7 +104,7 @@ class IntakeForm(ModelForm):
 
     def send_notification_email(self, object_id):
         sg = sendgrid.SendGridAPIClient(apikey=os.environ['SENDGRID_API_KEY'])
-        print(sg)
+        #print(sg)
         data = self.build_notification_email(object_id)
-        print(data)
-        #sg.client.mail.send.post(request_body=data)
+        #print(data)
+        sg.client.mail.send.post(request_body=data)
