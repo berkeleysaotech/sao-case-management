@@ -106,8 +106,8 @@ if LOCAL:  # Running locally
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'sao_local_db',
-            'USER': 'postgres',
+            'NAME': 'postgres',
+            'USER': 'maxlord',
             'HOST': 'localhost',
             'PORT': '5432',
         }

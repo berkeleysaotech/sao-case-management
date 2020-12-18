@@ -5,6 +5,8 @@ from django.contrib.auth.models import Group
 from django.utils import timezone
 from cases.forms import TINY_MCE_SETUP
 from django.urls import reverse
+from django.utils.html import format_html
+from django.urls import resolve
 
 admin.AdminSite.site_header = "SAO Case Administration"
 admin.AdminSite.index_title = "SAO Case Administration"
@@ -36,8 +38,13 @@ class CasesInline(admin.TabularInline):
         can see all cases associated with a caseworker, but division leads can only see
         the cases which fall under their division
         """
+        resolved = resolve(request.path_info)
+
+        if db_field.name == 'case':
+            kwargs["queryset"] = Case.objects.filter(caseworkers__id__exact=resolved.kwargs['object_id'])
         if db_field.name == 'case' and request.user not in Group.objects.get(name='Office Leads').user_set.all():
-            kwargs["queryset"] = Case.objects.filter(divisions__contains=request.user.caseworker.division)
+            kwargs["queryset"] = Case.objects.filter(caseworkers__id__exact=resolved.kwargs['object_id'], divisions__contains=request.user.caseworker.division)
+
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 
